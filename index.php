@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <!-- Main CSS -->
-  <link rel="stylesheet" href="./assets/style/style.css" />
+  <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 <body>
 
@@ -25,6 +25,7 @@
       <li><a href="#beranda">Beranda</a></li>
       <li><a href="#tentang">Tentang</a></li>
       <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#testimoni">Testimoni</a></li>
       <li><a href="#kontak">Kontak</a></li>
     </ul>
     <div class="nav-actions" id="navActions">
@@ -195,6 +196,72 @@
     </div>
   </section>
 
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials" id="testimoni">
+    <div class="testimonials-header">
+      <p class="section-label reveal">Testimoni</p>
+      <h2 class="section-title reveal reveal-delay-1">Apa Kata<br><em>Klien Kami</em></h2>
+      <p class="section-sub reveal reveal-delay-2">Ribuan pelanggan telah mempercayakan perawatan kulit mereka kepada GlowClick.</p>
+    </div>
+
+    <!-- Grid Testimoni — diisi via JS (fetch dari fetch_testimoni.php) -->
+    <div class="testi-grid" id="testiGrid">
+      <div class="testi-loading">
+        <i class="fa-solid fa-spinner"></i>
+        Memuat testimoni...
+      </div>
+    </div>
+
+    <!-- Form Tambah Testimoni -->
+    <div class="testi-form-wrap reveal">
+      <h3>Bagikan <em>Pengalaman Anda</em></h3>
+      <p>Ceritakan hasil perawatan Anda kepada ribuan calon klien GlowClick lainnya.</p>
+
+      <div class="form-alert" id="formAlert">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="formAlertMsg"></span>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="tNama">Nama Lengkap <span style="color:var(--gold-deep)">*</span></label>
+          <input type="text" id="tNama" name="nama" placeholder="Contoh: Sari Dewi" maxlength="100" required />
+        </div>
+        <div class="form-group">
+          <label for="tKota">Kota <span style="color:var(--gold-deep)">*</span></label>
+          <input type="text" id="tKota" name="kota" placeholder="Contoh: Yogyakarta" maxlength="100" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Rating <span style="color:var(--gold-deep)">*</span></label>
+        <div class="star-rating" id="starRating">
+          <input type="radio" name="rating" id="star5" value="5" checked />
+          <label for="star5" title="5 bintang"><i class="fa-solid fa-star"></i></label>
+          <input type="radio" name="rating" id="star4" value="4" />
+          <label for="star4" title="4 bintang"><i class="fa-solid fa-star"></i></label>
+          <input type="radio" name="rating" id="star3" value="3" />
+          <label for="star3" title="3 bintang"><i class="fa-solid fa-star"></i></label>
+          <input type="radio" name="rating" id="star2" value="2" />
+          <label for="star2" title="2 bintang"><i class="fa-solid fa-star"></i></label>
+          <input type="radio" name="rating" id="star1" value="1" />
+          <label for="star1" title="1 bintang"><i class="fa-solid fa-star"></i></label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="tPesan">Testimoni <span style="color:var(--gold-deep)">*</span></label>
+        <textarea id="tPesan" name="pesan" placeholder="Ceritakan pengalaman Anda menggunakan layanan GlowClick..." maxlength="1000" required></textarea>
+        <small style="color:var(--gray-soft);font-size:0.72rem;margin-top:0.25rem;" id="charCount">0 / 1000 karakter</small>
+      </div>
+
+      <button class="btn-submit" id="btnSubmit" onclick="submitTestimoni()">
+        <i class="fa-solid fa-paper-plane"></i>
+        Kirim Testimoni
+      </button>
+    </div>
+  </section>
+
   <!-- ===== CTA BANNER ===== -->
   <div class="cta-banner" id="kontak">
     <div class="cta-banner-text reveal">
@@ -226,7 +293,8 @@
           <li><a href="#beranda">Beranda</a></li>
           <li><a href="#tentang">Tentang Kami</a></li>
           <li><a href="#layanan">Layanan</a></li>
-            </ul>
+          <li><a href="#testimoni">Testimoni</a></li>
+        </ul>
       </div>
       <div class="footer-col">
         <h4>Layanan</h4>
@@ -291,6 +359,136 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(r => observer.observe(r));
 
+    // ── Char counter ─────────────────────────────────
+    document.getElementById('tPesan').addEventListener('input', function () {
+      document.getElementById('charCount').textContent = this.value.length + ' / 1000 karakter';
+    });
+
+    // ── Render bintang ───────────────────────────────
+    function renderStars(rating) {
+      let html = '';
+      for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+          html += '<i class="fa-solid fa-star"></i>';
+        } else {
+          html += '<i class="fa-regular fa-star"></i>';
+        }
+      }
+      return html;
+    }
+
+    // ── Render satu card testimoni ───────────────────
+    function renderCard(t) {
+      return `
+        <div class="testi-card">
+          <div class="testi-stars">${renderStars(t.rating)}</div>
+          <p class="testi-text">${escHtml(t.pesan)}</p>
+          <div class="testi-author">
+            <div class="testi-avatar">
+              <img src="${t.foto_url}" alt="${escHtml(t.nama)}" onerror="this.src='https://ui-avatars.com/api/?name=${encodeURIComponent(t.nama)}&background=E8DBB3&color=000&size=100'" />
+            </div>
+            <div>
+              <div class="testi-name">${escHtml(t.nama)}</div>
+              <div class="testi-role">Klien · ${escHtml(t.kota)}</div>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    // ── Escape HTML (XSS protection) ─────────────────
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // ── Load testimoni dari server ───────────────────
+    function loadTestimoni() {
+      const grid = document.getElementById('testiGrid');
+      grid.innerHTML = '<div class="testi-loading"><i class="fa-solid fa-spinner"></i>Memuat testimoni...</div>';
+
+      fetch('../app/api/fetch_testimoni.php')
+        .then(r => r.json())
+        .then(res => {
+          if (!res.success) throw new Error(res.message);
+          if (res.data.length === 0) {
+            grid.innerHTML = '<div class="testi-empty"><i class="fa-regular fa-comment-dots"></i>Belum ada testimoni. Jadilah yang pertama!</div>';
+            return;
+          }
+          grid.innerHTML = res.data.map(renderCard).join('');
+        })
+        .catch(err => {
+          grid.innerHTML = `<div class="testi-empty"><i class="fa-solid fa-triangle-exclamation"></i>Gagal memuat testimoni.<br><small>${err.message}</small></div>`;
+        });
+    }
+
+    // ── Submit testimoni ─────────────────────────────
+    function submitTestimoni() {
+      const nama   = document.getElementById('tNama').value.trim();
+      const kota   = document.getElementById('tKota').value.trim();
+      const pesan  = document.getElementById('tPesan').value.trim();
+      const rating = document.querySelector('input[name="rating"]:checked')?.value || 5;
+      const btn    = document.getElementById('btnSubmit');
+      const alert  = document.getElementById('formAlert');
+      const alertMsg = document.getElementById('formAlertMsg');
+
+      // Reset alert
+      alert.className = 'form-alert';
+
+      // Validasi client-side
+      if (!nama || !kota || !pesan) {
+        alertMsg.textContent = 'Semua field wajib diisi.';
+        alert.className = 'form-alert error';
+        return;
+      }
+
+      // Disable tombol & show loading
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mengirim...';
+
+      const formData = new FormData();
+      formData.append('nama',   nama);
+      formData.append('kota',   kota);
+      formData.append('pesan',  pesan);
+      formData.append('rating', rating);
+
+      fetch('../app/api/submit_testimoni.php', { method: 'POST', body: formData })
+        .then(r => r.json())
+        .then(res => {
+          if (res.success) {
+            // Tampilkan pesan sukses
+            alertMsg.textContent = res.message;
+            alert.className = 'form-alert success';
+            alert.querySelector('i').className = 'fa-solid fa-circle-check';
+
+            // Reset form
+            document.getElementById('tNama').value  = '';
+            document.getElementById('tKota').value  = '';
+            document.getElementById('tPesan').value = '';
+            document.getElementById('charCount').textContent = '0 / 1000 karakter';
+            document.getElementById('star5').checked = true;
+
+            // Reload grid testimoni
+            loadTestimoni();
+          } else {
+            alertMsg.textContent = res.message || 'Gagal mengirim testimoni.';
+            alert.className = 'form-alert error';
+            alert.querySelector('i').className = 'fa-solid fa-circle-xmark';
+          }
+        })
+        .catch(() => {
+          alertMsg.textContent = 'Terjadi kesalahan jaringan. Coba lagi.';
+          alert.className = 'form-alert error';
+          alert.querySelector('i').className = 'fa-solid fa-circle-xmark';
+        })
+        .finally(() => {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Kirim Testimoni';
+        });
+    }
+
+    // ── Init ─────────────────────────────────────────
+    loadTestimoni();
   </script>
 
 </body>
