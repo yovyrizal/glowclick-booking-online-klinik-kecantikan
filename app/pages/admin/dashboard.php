@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') { header('Location: ../login.php'); exit; }
-require_once __DIR__ . '/../../config/db.php';
+require_once __DIR__ . '/glowclick-pwd/app/config/db.php';
 $page_title = 'Dashboard';
 $conn = getDB();
 $total_user=0;$total_booking=0;$total_dokter=0;$total_testimoni=0;$booking_pending=0;$booking_hari_ini=0;
