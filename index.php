@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
   <!-- Main CSS -->
-  <link rel="stylesheet" href="./assets/style/style.css" />
+  <link rel="stylesheet" href="assets/style/style.css" />
 </head>
 <body>
 
@@ -29,8 +29,8 @@
       <li><a href="#kontak">Kontak</a></li>
     </ul>
     <div class="nav-actions" id="navActions">
-      <a href="login.php"    class="btn-outline">Login</a>
-      <a href="register.php" class="btn-solid">Sign Up</a>
+      <a href="app/pages/login.php"    class="btn-outline">Login</a>
+      <a href="app/pages/register.php" class="btn-solid">Sign Up</a>
     </div>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -49,7 +49,7 @@
         Rediscover your natural beauty with our signature clinical treatments.
         Experience expert care and seamless scheduling designed for your modern lifestyle.
       </p>
-      <a href="login.php" class="btn-cta">
+      <a href="app/pages/login.php" class="btn-cta">
         Schedule a Visit <i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
@@ -268,7 +268,7 @@
       <p class="label">Mulai Sekarang</p>
       <h2>Siap untuk <em>Tampil Lebih Glowing?</em></h2>
     </div>
-    <a href="login.php" class="btn-cta-gold reveal reveal-delay-2">
+    <a href="app/pages/login.php" class="btn-cta-gold reveal reveal-delay-2">
       <i class="fa-solid fa-calendar-check"></i>
       Book Sekarang
     </a>
@@ -407,7 +407,7 @@
       const grid = document.getElementById('testiGrid');
       grid.innerHTML = '<div class="testi-loading"><i class="fa-solid fa-spinner"></i>Memuat testimoni...</div>';
 
-      fetch('../app/api/fetch_testimoni.php')
+      fetch('app/auth/fetch_testimoni.php')
         .then(r => r.json())
         .then(res => {
           if (!res.success) throw new Error(res.message);
@@ -452,7 +452,7 @@
       formData.append('pesan',  pesan);
       formData.append('rating', rating);
 
-      fetch('../app/api/submit_testimoni.php', { method: 'POST', body: formData })
+      fetch('app/auth/submit_testimoni.php', { method: 'POST', body: formData })
         .then(r => r.json())
         .then(res => {
           if (res.success) {
