@@ -94,6 +94,8 @@ CREATE TABLE IF NOT EXISTS booking (
     jam TIME NOT NULL,
     status ENUM('pending','konfirmasi','selesai','batal') NOT NULL DEFAULT 'pending',
     catatan TEXT NULL,
+    metode_pembayaran ENUM('Transfer Bank','Cash','QRIS') NULL,
+    bukti_pembayaran VARCHAR(255) NULL,
     created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (dokter_id) REFERENCES dokter(id) ON DELETE CASCADE,
