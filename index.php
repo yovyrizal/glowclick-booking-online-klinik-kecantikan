@@ -55,7 +55,7 @@
     </div>
     <div class="hero-image">
       <img
-        src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=800&q=80&fit=crop&crop=face"
+        src="assets/img/hero-img.webp"
         alt="Beauty Treatment"
       />
       <div class="hero-image-overlay">
@@ -138,7 +138,7 @@
     </div>
     <div class="services-grid">
       <div class="service-card reveal">
-        <img src="https://images.unsplash.com/photo-1579734671973-f1e9c2d80a74?w=500&q=80&fit=crop" alt="Botox" />
+        <img src="assets/img/layanan-botox.webp" alt="Botox" />
         <div class="service-card-overlay">
           <span class="service-tag">Perawatan Wajah</span>
           <span class="service-name">Botox</span>
@@ -146,7 +146,7 @@
         </div>
       </div>
       <div class="service-card reveal reveal-delay-1">
-        <img src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=500&q=80&fit=crop" alt="Skin Booster" />
+        <img src="assets/img/layanan-skinbooster.webp" alt="Skin Booster" />
         <div class="service-card-overlay">
           <span class="service-tag">Hidrasi Kulit</span>
           <span class="service-name">Skin Booster</span>
@@ -154,7 +154,7 @@
         </div>
       </div>
       <div class="service-card reveal reveal-delay-2">
-        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=500&q=80&fit=crop" alt="Filler" />
+        <img src="assets/img/layanan-filler.webp" alt="Filler" />
         <div class="service-card-overlay">
           <span class="service-tag">Estetika</span>
           <span class="service-name">Filler</span>
@@ -162,7 +162,7 @@
         </div>
       </div>
       <div class="service-card reveal reveal-delay-3">
-        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=500&q=80&fit=crop" alt="Exilis" />
+        <img src="assets/img/layanan-exilis.webp" alt="Exilis" />
         <div class="service-card-overlay">
           <span class="service-tag">Body Contouring</span>
           <span class="service-name">Exilis</span>
@@ -170,7 +170,7 @@
         </div>
       </div>
       <div class="service-card reveal reveal-delay-1">
-        <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=500&q=80&fit=crop" alt="Facial" />
+        <img src="assets/img/layanan-facial.webp" alt="Facial" />
         <div class="service-card-overlay">
           <span class="service-tag">Perawatan Dasar</span>
           <span class="service-name">Facial</span>
@@ -178,7 +178,7 @@
         </div>
       </div>
       <div class="service-card reveal reveal-delay-2">
-        <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=500&q=80&fit=crop" alt="Laser" />
+        <img src="assets/img/layanan-laser.webp" alt="Laser" />
         <div class="service-card-overlay">
           <span class="service-tag">Teknologi Terkini</span>
           <span class="service-name">Laser</span>
@@ -186,7 +186,7 @@
         </div>
       </div>
       <div class="service-card reveal reveal-delay-3">
-        <img src="https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=500&q=80&fit=crop" alt="Acne Removal" />
+        <img src="assets/img/layanan-acneremoval.webp" alt="Acne Removal" />
         <div class="service-card-overlay">
           <span class="service-tag">Kulit Bermasalah</span>
           <span class="service-name">Acne Removal</span>
