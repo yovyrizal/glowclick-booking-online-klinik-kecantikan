@@ -18,7 +18,7 @@ include '_header.php';
 
 <div class="page-header"><div class="page-header-text"><h1>Profil <em>Saya</em></h1><p>Kelola informasi akun Anda.</p></div></div>
 
-<div style="max-width:600px;">
+<div style="max-width:600px;margin:0 auto;">
   <div class="card" style="margin-bottom:1.4rem;">
     <div class="card-body" style="text-align:center;padding:2rem;">
       <div style="width:72px;height:72px;border-radius:50%;background:var(--gold-pale);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:2rem;color:var(--gold-deep);margin:0 auto .75rem;border:2px solid var(--gold-mid);">

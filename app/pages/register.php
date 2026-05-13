@@ -33,7 +33,7 @@ unset($_SESSION['auth_error']);
   <!-- ── KIRI: Visual ─────────────────────── -->
   <div class="auth-visual">
     <img
-      src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=900&q=80&fit=crop&crop=face"
+      src="../../assets/img/hero-img.webp"
       alt="Beauty Treatment"
     />
     <div class="auth-visual-overlay"></div>

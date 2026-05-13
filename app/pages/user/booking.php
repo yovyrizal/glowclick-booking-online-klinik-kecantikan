@@ -26,7 +26,7 @@ include '_header.php';
 
 <!-- STEPPER -->
 <div style="margin-bottom:2rem;">
-  <div style="display:flex;align-items:center;gap:0;max-width:600px;">
+  <div style="display:flex;align-items:center;gap:0;max-width:600px;margin:0 auto;">
     <?php
     $steps = ['Data Diri','Layanan & Dokter','Jadwal','Konfirmasi'];
     foreach ($steps as $i => $s):
@@ -48,7 +48,7 @@ include '_header.php';
 </div>
 
 <!-- FORM WRAPPER -->
-<div style="max-width:640px;">
+<div style="max-width:640px;margin:0 auto;">
 
 <!-- STEP 1: DATA DIRI -->
 <div class="card step-panel" id="panel-1">
