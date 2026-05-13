@@ -2,8 +2,8 @@
 // ===== KONFIGURASI DATABASE =====
 // Sesuaikan dengan konfigurasi server Anda
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');        // ganti dengan username MySQL Anda
-define('DB_PASS', '');            // ganti dengan password MySQL Anda
+define('DB_USER', 'root');
+define('DB_PASS', '');
 define('DB_NAME', 'glowclick');
 
 function getDB() {

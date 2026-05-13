@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') { header('Location: ../login.php'); exit; }
-require_once __DIR__ . '/glowclick-pwd/app/config/db.php';
+require_once __DIR__ . '/../../config/db.php';
 $page_title = 'Profil Saya';
 $conn = getDB();
 $user = null;
@@ -18,7 +18,7 @@ include '_header.php';
 
 <div class="page-header"><div class="page-header-text"><h1>Profil <em>Saya</em></h1><p>Kelola informasi akun admin Anda.</p></div></div>
 
-<div style="max-width:600px;">
+<div style="max-width:600px;margin:0 auto;">
   <!-- Avatar -->
   <div class="card" style="margin-bottom:1.4rem;">
     <div class="card-body" style="text-align:center;padding:2rem;">
